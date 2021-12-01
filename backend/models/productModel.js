@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: [true, 'Please Enter Product Name'],
+        required: [true, 'Please Enter Product Name'],
         trim: true
     },
     description: {
         type: String,
-        require: [true, 'Please Enter Your Description']
+        required: [true, 'Please Enter Your Description']
     },
     price: {
         type: Number,
-        require: [true, 'Please enter your price']
+        required: [true, 'Please enter your price']
     },
     rating: {
         type: Number,
@@ -21,20 +21,20 @@ const productSchema = new mongoose.Schema({
     images: [{
         public_id: {
             type: String,
-            require: true
+            required: true
         },
         url: {
             type: String,
-            require: true
+            required: true
         }
     }],
     category: {
         type: String,
-        require: [true, 'Please enter your category']
+        required: [true, 'Please enter your category']
     },
     stock: {
         type: Number,
-        require: [true, 'Please enter your stock'],
+        required: [true, 'Please enter your stock'],
         maxLength: 4,
         default: 1
     },
@@ -45,17 +45,22 @@ const productSchema = new mongoose.Schema({
     reviews: [{
         name: {
             type: String,
-            require: true
+            required: true
         },
         rating: {
             type: Number,
-            require: true
+            required: true
         },
         comment: {
             type: String,
-            require: true
+            required: true
         }
     }],
+    user:{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Users',
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

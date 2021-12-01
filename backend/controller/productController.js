@@ -4,6 +4,9 @@ const ApiFeatures = require("../helpers/apiFeatures");
 
 //Create Product
 exports.createProduct = asyncValidation(async(req, res) => {
+
+    req.body.user = req.user.id;
+    
     const product = await Products.create(req.body);
     res.status(200).json({
         success: true,
